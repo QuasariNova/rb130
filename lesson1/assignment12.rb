@@ -84,6 +84,14 @@ class TodoList
     todo.done! unless todo.nil?
   end
 
+  def mark_all_done
+    each { |todo| todo.done! }
+  end
+
+  def mark_all_undone
+    each { |todo| todo.undone! }
+  end
+
   def add(todo)
     raise TypeError, "Can only add Todo objects" unless todo.instance_of? Todo
     todos << todo
