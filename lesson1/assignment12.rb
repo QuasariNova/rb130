@@ -71,6 +71,14 @@ class TodoList
     nil
   end
 
+  def all_done
+    select { |todo| todo.done? }
+  end
+
+  def all_not_done
+    select { |todo| !todo.done? }
+  end
+
   def add(todo)
     raise TypeError, "Can only add Todo objects" unless todo.instance_of? Todo
     todos << todo
@@ -152,6 +160,6 @@ list.add(todo3)
 
 todo1.done!
 
-result = list.find_by_title("Clean room")
+result = list.all_not_done
 
 puts result.inspect
