@@ -58,8 +58,12 @@ class TodoList
     @todos = []
   end
 
+  # Update the TodoList#each method so that it returns the original (not new)
+  # TodoList object.
+
   def each
     todos.each { |todo| yield todo }
+    self
   end
 
   # def select
