@@ -79,6 +79,11 @@ class TodoList
     select { |todo| !todo.done? }
   end
 
+  def mark_done(title)
+    todo = find_by_title title
+    todo.done! unless todo.nil?
+  end
+
   def add(todo)
     raise TypeError, "Can only add Todo objects" unless todo.instance_of? Todo
     todos << todo
@@ -160,6 +165,6 @@ list.add(todo3)
 
 todo1.done!
 
-result = list.all_not_done
+result = list.mark_done "Clean room"
 
 puts result.inspect
