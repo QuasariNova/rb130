@@ -62,8 +62,18 @@ class TodoList
     todos.each { |todo| yield todo }
   end
 
+  # def select
+  #   results = []
+  #   each { |todo| results << todo if yield todo }
+  #   results
+  # end
+
+  # Your next task is to refine our TodoList#select method so that it still
+  # behaves the same, except instead of returning an Array object, it returns a
+  # TodoList object.
+
   def select
-    results = []
+    results = TodoList.new title
     each { |todo| results << todo if yield todo }
     results
   end
