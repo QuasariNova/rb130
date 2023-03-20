@@ -90,4 +90,15 @@ class TodoListTest < MiniTest::Test
     assert_same @todo2, @list.item_at(1)
     assert_same @todo1, @list.item_at(-3)
   end
+
+  # 12. mark_done_at
+  # Hint: this method should also raise IndexError if we specify an index with
+  # no element.
+  def test_mark_done_at
+    assert_raises(IndexError) { @list.mark_done_at 100 }
+    @list.mark_done_at 1
+    assert_equal false, @todo1.done?
+    assert_equal true, @todo2.done?
+    assert_equal false, @todo3.done?
+  end
 end
