@@ -23,8 +23,13 @@ class TodoListTest < MiniTest::Test
     assert_equal(@todos, @list.to_a)
   end
 
-  # size
+  # 2. size
   def test_size
     assert_equal(3, @list.size)
+  end
+
+  # 3. Create test for #first. Launch School uses assert_equal
+  def test_first
+    assert_same(@todo1, @list.first)
   end
 end
