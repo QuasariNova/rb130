@@ -172,4 +172,21 @@ class TodoListTest < MiniTest::Test
     OUTPUT
     assert_equal(output, @list.to_s)
   end
+
+  # 19. each
+  # What we're looking for here is to test that the each method is actually
+  # iterating. There are lots of ways to test this, so pick something simple to
+  # assert against.
+  def test_each
+    out = []
+    @list.each { |todo| out << todo }
+    assert_equal [@todo1, @todo2, @todo3], out
+  end
+
+  # 20. Write another test for each, except in this test verify that the each
+  # method returns the original object.
+  def test_each_2
+    out = @list.each {}
+    assert_same @list, out
+  end
 end
