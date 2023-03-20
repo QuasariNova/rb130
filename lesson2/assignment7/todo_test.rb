@@ -71,4 +71,13 @@ class TodoListTest < MiniTest::Test
     @list << @todo1
     assert_equal([@todo1, @todo2, @todo3, @todo1], @list.to_a)
   end
+
+  # The add method is aliased to <<. Test that this alias also works as
+  # expected.
+  def test_add
+    todo = Todo.new "Wag the tail"
+    @list.add todo
+    @todos << todo
+    assert_equal(@todos, @list.to_a)
+  end
 end
