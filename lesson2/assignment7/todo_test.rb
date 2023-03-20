@@ -64,4 +64,11 @@ class TodoListTest < MiniTest::Test
     assert_raises(TypeError) { @list.add(1) }
     assert_raises(TypeError) { @list.add('') }
   end
+
+  # 9. Write a test that verifies whether the << method(shovel method) does
+  # actually add a Todo to our TodoList.
+  def test_shovel
+    @list << @todo1
+    assert_equal([@todo1, @todo2, @todo3, @todo1], @list.to_a)
+  end
 end
