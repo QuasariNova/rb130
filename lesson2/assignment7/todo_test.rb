@@ -45,4 +45,11 @@ class TodoListTest < MiniTest::Test
     assert_same(@todo1, @list.shift)
     assert_equal([@todo2, @todo3], @list.to_a)
   end
+
+  # 6. Create test for #pop.
+  # Hint: similar to shift, except pop removes and returns the last item.
+  def test_pop
+    assert_same(@todo3, @list.pop)
+    assert_equal([@todo1, @todo2], @list.to_a)
+  end
 end
