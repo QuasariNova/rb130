@@ -113,4 +113,15 @@ class TodoListTest < MiniTest::Test
     assert_equal false, @todo2.done?
     assert_equal true, @todo3.done?
   end
+
+  # done!
+  # Hint: this method makes all Todos within the list done.
+  def test_done_bang
+    @list.done!
+
+    assert_equal true, @todo1.done?
+    assert_equal true, @todo2.done?
+    assert_equal true, @todo3.done?
+    assert_equal true, @list.done?
+  end
 end
