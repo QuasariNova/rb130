@@ -57,4 +57,11 @@ class TodoListTest < MiniTest::Test
   def test_done_question
     assert_equal(false, @list.done?)
   end
+
+  # 8. Write a test that verifies a TypeError is raised when adding an item
+  # into the list that's not a Todo object.
+  def test_add_raise_error
+    assert_raises(TypeError) { @list.add(1) }
+    assert_raises(TypeError) { @list.add('') }
+  end
 end
