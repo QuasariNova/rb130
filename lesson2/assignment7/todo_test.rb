@@ -134,4 +134,42 @@ class TodoListTest < MiniTest::Test
     assert_equal @todo2, deleted
     assert_equal [@todo1, @todo3], @list.to_a
   end
+
+  # 16. to_s. Copied from Launchschool
+  def test_to_s
+    output = <<~OUTPUT.chomp
+    ---- Today's Todos ----
+    [ ] Buy milk
+    [ ] Clean room
+    [ ] Go to gym
+    OUTPUT
+
+    assert_equal(output, @list.to_s)
+  end
+
+  # 17. verify that it returns the right multi-line string when one of the
+  # todos is done.
+  def test_to_s_2
+    @todo2.done!
+    output = <<~OUTPUT.chomp
+    ---- Today's Todos ----
+    [ ] Buy milk
+    [X] Clean room
+    [ ] Go to gym
+    OUTPUT
+    assert_equal(output, @list.to_s)
+  end
+
+  # 18. verify that it returns the right multi-line string when all todos are
+  # done.
+  def test_to_s_3
+    @list.done!
+    output = <<~OUTPUT.chomp
+    ---- Today's Todos ----
+    [X] Buy milk
+    [X] Clean room
+    [X] Go to gym
+    OUTPUT
+    assert_equal(output, @list.to_s)
+  end
 end
