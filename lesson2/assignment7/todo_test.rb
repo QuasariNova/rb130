@@ -32,4 +32,17 @@ class TodoListTest < MiniTest::Test
   def test_first
     assert_same(@todo1, @list.first)
   end
+
+  # 4. Create test for #last. Launch School uses assert_equal
+  def test_last
+    assert_same(@todo3, @list.last)
+  end
+
+  # 5. Create test for #shift.
+  # Hint: TodoList#shift should remove and return the first item in the list.
+  # You probably want an assertion for each of those behaviors.
+  def test_shift
+    assert_same(@todo1, @list.shift)
+    assert_equal([@todo2, @todo3], @list.to_a)
+  end
 end
