@@ -189,4 +189,13 @@ class TodoListTest < MiniTest::Test
     out = @list.each {}
     assert_same @list, out
   end
+
+  # 21. select
+  # Hint: remember that select returns a new TodoList object.
+  def test_select
+    selected = @list.select { |todo| todo.title == "Buy milk"}
+    refute_same @list, selected
+    assert_equal @list.title, selected.title
+    assert_equal [@todo1], selected.to_a
+  end
 end
