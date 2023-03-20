@@ -114,7 +114,7 @@ class TodoListTest < MiniTest::Test
     assert_equal true, @todo3.done?
   end
 
-  # done!
+  # 14. done!
   # Hint: this method makes all Todos within the list done.
   def test_done_bang
     @list.done!
@@ -123,5 +123,15 @@ class TodoListTest < MiniTest::Test
     assert_equal true, @todo2.done?
     assert_equal true, @todo3.done?
     assert_equal true, @list.done?
+  end
+
+  # 15. remove_at
+  # Hint: this method raises IndexError if argument does not return item.
+  def test_remove_at
+    assert_raises(IndexError) { @list.remove_at 6 }
+
+    deleted = @list.remove_at 1
+    assert_equal @todo2, deleted
+    assert_equal [@todo1, @todo3], @list.to_a
   end
 end
