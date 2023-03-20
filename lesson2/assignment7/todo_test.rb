@@ -101,4 +101,16 @@ class TodoListTest < MiniTest::Test
     assert_equal true, @todo2.done?
     assert_equal false, @todo3.done?
   end
+
+  # 13. mark_undone_at
+  def test_mark_undone_at
+    assert_raises(IndexError) { @list.mark_undone_at 20 }
+    @todos.each { |todo| todo.done! }
+
+    @list.mark_undone_at 1
+
+    assert_equal true, @todo1.done?
+    assert_equal false, @todo2.done?
+    assert_equal true, @todo3.done?
+  end
 end
