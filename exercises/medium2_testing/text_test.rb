@@ -8,7 +8,7 @@ class TextTest < MiniTest::Test
   end
 
   def test_swap
-    text = Text.new file.read
+    text = Text.new @file.read
     actual_text = text.swap 'a', 'e'
 
     # using launch schools brute force
@@ -23,6 +23,10 @@ class TextTest < MiniTest::Test
 
     assert_equal expected_text, actual_text
   end
+
+  def test_word_count
+    text = Text.new @file.read
+    assert_equal 72, text.word_count
 
   def teardown
     @file.close
