@@ -18,4 +18,11 @@ class CashRegisterTest < MiniTest::Test
 
     assert_equal preivous_amount + 10, current_amount
   end
+
+  def test_change
+    @transaction.amount_paid = 100
+    target_value = @transaction.amount_paid - @transaction.item_cost
+
+    assert_equal target_value, @register.change @transaction
+  end
 end
