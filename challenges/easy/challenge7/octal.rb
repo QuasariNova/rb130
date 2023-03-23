@@ -24,7 +24,8 @@
 # = 2*10^2 + 3*10^1 + 3*10^0
 # = 2*100  + 3*10   + 3*1
 
-# Octal numbers are similar, but they use a base-8 system. A number 233 in base 8 can be understood as a linear combination of powers of 8:
+# Octal numbers are similar, but they use a base-8 system. A number 233 in base
+# 8 can be understood as a linear combination of powers of 8:
 
 #     The rightmost digit gets multiplied by 80 = 1
 #     The next digit gets multiplied by 81 = 8
@@ -41,3 +42,47 @@
 # = 2*64  + 3*8   + 3*1
 # = 128   + 24    + 3
 # = 155
+
+# Rules
+# - Octal object is instantiated with a string version of an octal number
+# - Octal has a to_decimal instance method
+# - Invalid input causes to_decimal to return 0
+# - to_decimal converts a string of base 8 numbers to base 10
+
+# e
+# '233' => 155
+# '10' => 8
+# 'a' => 0
+
+# d
+# Array
+
+# a
+# #initialize
+#   - Set @octal to given string
+
+# #to_decimal
+# - check if @octal is valid via regular expression
+#   - return 0 if not valid
+# - set decimal to 0
+# - Iterate over characters, keeping index in mind
+#   - add digit * 8 to the power of the digit to decimal
+# - return decimal
+
+class Octal
+  def initialize(octal)
+    @octal = octal
+  end
+
+  def to_decimal
+    return 0 if @octal =~ /[^0-7]/
+    digits = @octal.chars.map(&:to_i)
+
+    decimal = 0
+    digits.reverse_each.with_index do |digit, index|
+      decimal += digit * 8.pow(index)
+    end
+
+    decimal
+  end
+end
