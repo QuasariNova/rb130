@@ -25,3 +25,54 @@
 # => 3 + 2 + 6 + 3
 # => 5 + 9
 # => 14
+
+# rules
+# - The Scrabble object is instantiated with a string
+# - The string is case insensitive
+# - Each letter has a value, non alphabetical characters are worth 0
+# - The score instance method determines the value of the string
+# - score is a sum of the values
+# - Scrabble has a class method score that will invoke instance score
+
+# e
+# 'cabbage' => 14
+# '  ' => 0
+# 'chris' => 10
+
+# d
+# String, hash (regex => value)
+
+# a
+# #initialize
+#   - set @word to given string
+
+# #score
+#   - return 0 if @word is nil
+#   - set value to 0
+#   - Apply each regex over @word
+#     - For each match, add the value of the regex to value
+#   - return value
+
+class Scrabble
+  POINTS = {/[aeioulnrst]/i => 1, /[dg]/i => 2, /[bcmp]/i => 3,
+            /[fhvwy]/i => 4, /k/i => 5, /[jx]/i => 8,
+            /[qz]/i => 10}
+
+  def initialize(word)
+    @word = word
+  end
+
+  def score
+    return 0 if @word.nil?
+    score = 0
+    POINTS.each do |regex, value|
+      score += @word.scan(regex).size * value
+    end
+
+    score
+  end
+
+  def self.score(word)
+    Scrabble.new(word).score
+  end
+end
