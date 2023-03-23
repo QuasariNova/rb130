@@ -28,3 +28,58 @@
 # The Hamming distance is only defined for sequences of equal length. If you
 # have two sequences of unequal length, you should compute the Hamming distance
 # over the shorter length.
+
+# Rules
+# - DNA object is constructed of a string
+# - Has an instance method hamming_distance that takes a string as an argument
+#   and returns an integer
+# - Hamming distance is the number of character differences between the string
+#   stored in the DNA object and the string passed as an argument
+# - Can only calculate distance on two strings of the same lenght, thus we only
+#   search over the smaller of the two strings.
+
+# e
+# CAT
+# GAT
+# => 1
+
+# GACCT
+# GAGCATG
+# => 2
+
+#
+# GAGC
+# => 0
+
+# d
+# Strings
+
+# a
+# #initialize
+#   - Given a string, store the string in instance variable @strand
+
+# #hamming_distance
+#   - Given a string distance
+#   - Determine which is longer @strand or distance and store that lenght in
+#     length
+#   - store 0 to diffs
+#   - Iterate over @strand and distance length number of characters
+#     - if @strand != distance at each character, add 1 to diffs
+#   - return diffs
+
+class DNA
+  attr_reader :strand
+
+  def initialize(strand)
+    @strand = strand
+  end
+
+  def hamming_distance(distance)
+    length = [strand.size, distance.size].min
+    diffs = 0
+
+    length.times { |idx| diffs += 1 unless strand[idx] == distance[idx] }
+
+    diffs
+  end
+end
