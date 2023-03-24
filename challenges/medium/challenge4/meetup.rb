@@ -27,3 +27,59 @@
 # The days of the week are given by the strings 'Monday', 'Tuesday',
 # 'Wednesday', 'Thursday', 'Friday', 'Saturday', and 'Sunday'. Again, the case
 # of the strings is not important.
+
+# rules
+# - Meetup Class
+#   - initialize takes a year and a month
+#   - #day method takes two strings day and frequency
+#     - returns nil if there is no meetup date in that month
+#     - iterates over the month looking for a day that matches day and freq
+#     - returns Date.civil if it finds it
+# - day and frequency are case insensitive
+
+require 'date'
+
+class Meetup
+  FREQUENCY = {'first' => 1, 'second' => 2, 'third' => 3, 'fourth' => 4,
+               'fifth' => 5 }
+
+  def initialize(year, month)
+    @year = year
+    @month = month
+  end
+
+  def day(day, frequency)
+    return last_day day if frequency.downcase == 'last'
+    return teenth_day day if frequency.downcase == 'teenth'
+    date = Date.civil(@year, @month, 1)
+    occurences = 0
+
+    until date.month != @month
+      occurences += 1 if is_day?(date, day)
+      return date if occurences == FREQUENCY[frequency.downcase]
+      date = date.next
+    end
+
+    nil
+  end
+
+  private
+
+  def is_day?(date, day)
+    date.send "#{day.downcase}?".to_sym
+  end
+
+  def last_day(day)
+    date = Date.civil(@year, @month, 1).next_month.prev_day
+    date = date.prev_day until is_day? date, day
+
+    date
+  end
+
+  def teenth_day(day)
+    date = Date.civil(@year, @month, 13)
+    date = date.next_day until is_day? date, day
+
+    date
+  end
+end
