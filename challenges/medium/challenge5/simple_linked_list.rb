@@ -31,16 +31,16 @@
 #   - #size
 #     - returns size of list
 #   - #empty?
-#     - returns if list is empty
+#     - returns if head is nil
 #   - #push takes 1 argument
 #     - adds value to list as new Element
 #     - newest element is linked to the last element added
 #   - #pop
-#     - returns datum of last element
+#     - returns datum of last element and sets head to next
 #   - #head
 #     - returns last Element added
 #   - #peek
-#     - returns datum from last Element
+#     - returns datum from head
 #   - #to_a
 #     - Converts SimpleLinkedList to array
 #   - #reverse
@@ -63,6 +63,8 @@ class Element
 end
 
 class SimpleLinkedList
+  attr_reader :head
+
   def self.from_a(arr)
     arr = [] if arr.nil?
 
@@ -73,43 +75,63 @@ class SimpleLinkedList
   end
 
   def initialize
-    @list = []
+    @head = nil
   end
 
   def size
-    list.size
+    count = 0
+    each { count += 1}
+    count
   end
 
   def empty?
-    list.empty?
+    head.nil?
   end
 
   def push(datum)
-    list << Element.new(datum, list.last)
+    self.head = Element.new(datum, head)
     self
   end
 
   def pop
-    list.pop.datum unless empty?
+    return nil if empty?
+
+    value = head.datum
+    self.head = head.next
+
+    value
   end
 
   def peek
-    list.last.datum unless empty?
-  end
-
-  def head
-    list.last
+    head.datum unless empty?
   end
 
   def to_a
-    list.reverse.map { |ele| ele.datum }
+    each.with_object([]) { |ele, obj| obj << ele.datum }
   end
 
   def reverse
-    self.class::from_a to_a.reverse
+    self.class.from_a to_a.reverse
   end
 
   private
 
-  attr_reader :list
+  attr_writer :head
+
+  def each
+    enum = Enumerator.new do |arr|
+      current = head
+
+      until current.nil?
+        arr << current
+        current = current.next
+      end
+    end
+
+    if block_given?
+      enum.each { |ele| yield ele }
+    else
+      enum
+    end
+  end
 end
