@@ -30,8 +30,7 @@ In the above code, we use the `call` method to invoke a `Proc` object we create 
 
 Closures create a binding to everything in scope when they are defined. This allows them to use local variables initialized outside of themselves inside their definition. Any local variable initialized inside a closure are not accessible outside of the closure.
 
-## How blocks work, and when we want to use them.
-
+## How blocks work, and when we want to use them. ([Calling Methods with Blocks](https://launchschool.com/lessons/c0400a9c/assignments/ff802368)) ([Writing Methods that take Blocks](https://launchschool.com/lessons/c0400a9c/assignments/5a060a20))
 
 ## Blocks and variable scope ([Blocks and Variable Scope ](https://launchschool.com/lessons/c0400a9c/assignments/fd86ea2e))
 
@@ -40,19 +39,28 @@ Closures create a binding to everything in scope when they are defined. This all
 
 ### procs ([Calling Methods with Blocks](https://launchschool.com/lessons/c0400a9c/assignments/ff802368)) ([Writing Methods that take Blocks](https://launchschool.com/lessons/c0400a9c/assignments/5a060a20))
 
-## Understand that methods and blocks can return chunks of code (closures)
-## Methods with an explicit block parameter
-## Arguments and return values with blocks
-## When can you pass a block to a method
-## &:symbol
-## Arity of blocks and methods
+## Understand that methods and blocks can return chunks of code (closures) ([Writing Methods that take Blocks](https://launchschool.com/lessons/c0400a9c/assignments/5a060a20))
+
+## Methods with an explicit block parameter ([Writing Methods that take Blocks](https://launchschool.com/lessons/c0400a9c/assignments/5a060a20))
+
+## Arguments and return values with blocks ([Writing Methods that take Blocks](https://launchschool.com/lessons/c0400a9c/assignments/5a060a20))
+
+## When can you pass a block to a method ([Writing Methods that take Blocks](https://launchschool.com/lessons/c0400a9c/assignments/5a060a20))
+
+## &:symbol ([Symbol to proc](https://launchschool.com/lessons/c0400a9c/assignments/26d715d8))
+
+## Arity of blocks and methods ([Writing Methods that take Blocks](https://launchschool.com/lessons/c0400a9c/assignments/5a060a20))
 
 # Testing With Minitest
 ## Testing terminology ([Lecture: Minitest](https://launchschool.com/lessons/dd2ae827/assignments/3a8a5aa5))
 ### Test Suite
+
 ### Test
+
 ### Assertion
+
 ### DSL
+
 ### Code Coverage ([Code coverage](https://launchschool.com/lessons/dd2ae827/assignments/9f7c1f7c))
 
 ## Minitest vs. RSpec ([Lecture: Minitest](https://launchschool.com/lessons/dd2ae827/assignments/3a8a5aa5))
@@ -64,9 +72,14 @@ Closures create a binding to everything in scope when they are defined. This all
 # Core Tools/Packaging Code
 ## Purpose of core tools
 ### Rubygems
+
 ### RVM and Rbenv
+
 ### Bundler
+
 ### Rake
 
 ## Gemfiles ([Setting Up The Gemfile ](https://launchschool.com/lessons/2fdb1ef0/assignments/61b773fd))
+### Gemfile
+### Gemfile.lock
 ### Gemspec ([Preparing a Rubygem](https://launchschool.com/lessons/2fdb1ef0/assignments/918536a2)
