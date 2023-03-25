@@ -9,19 +9,16 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_element_tail
-    skip
     element = Element.new(1)
     assert element.tail?
   end
 
   def test_element_next_default
-    skip
     element = Element.new(1)
     assert_nil element.next
   end
 
   def test_element_next_initialization
-    skip
     element1 = Element.new(1)
     element2 = Element.new(2, element1)
     assert_equal element1, element2.next
