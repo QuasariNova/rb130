@@ -25,10 +25,13 @@
 
 # - SimpleLinkedList class
 #   - ::new has 0 arguments
-#   - ::from_a
+#   - ::from_a takes one argument
 #     - converts an array to SimpleLinkedList
+#     - if argument is nil, treat as empty array
 #   - #size
 #     - returns size of list
+#   - #empty?
+#     - returns if list is empty
 #   - #push takes 1 argument
 #     - adds value to list as new Element
 #     - newest element is linked to the last element added
@@ -47,18 +50,66 @@
 # Array
 
 class Element
-  attr_reader :datum
+  attr_reader :datum, :next
 
-  def initialize(datum, link = nil)
+  def initialize(datum, next_element = nil)
     @datum = datum
-    @link = link
+    @next = next_element
   end
 
   def tail?
-    @link.nil?
+    @next.nil?
+  end
+end
+
+class SimpleLinkedList
+  def self.from_a(arr)
+    arr = [] if arr.nil?
+
+    list = self.new
+    arr.reverse_each { |ele| list.push ele }
+
+    list
   end
 
-  def next
-    @link
+  def initialize
+    @list = []
   end
+
+  def size
+    list.size
+  end
+
+  def empty?
+    list.empty?
+  end
+
+  def push(datum)
+    list << Element.new(datum, list.last)
+    self
+  end
+
+  def pop
+    list.pop.datum unless empty?
+  end
+
+  def peek
+    list.last.datum unless empty?
+  end
+
+  def head
+    list.last
+  end
+
+  def to_a
+    list.reverse.map { |ele| ele.datum }
+  end
+
+  def reverse
+    self.class::from_a to_a.reverse
+  end
+
+  private
+
+  attr_reader :list
 end
