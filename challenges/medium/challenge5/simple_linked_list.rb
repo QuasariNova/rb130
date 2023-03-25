@@ -68,7 +68,7 @@ class SimpleLinkedList
   def self.from_a(arr)
     arr = [] if arr.nil?
 
-    list = self.new
+    list = new
     arr.reverse_each { |ele| list.push ele }
 
     list
@@ -80,7 +80,7 @@ class SimpleLinkedList
 
   def size
     count = 0
-    each { count += 1}
+    each { count += 1 }
     count
   end
 
@@ -119,19 +119,20 @@ class SimpleLinkedList
   attr_writer :head
 
   def each
-    enum = Enumerator.new do |arr|
+    return enumerator unless block_given?
+
+    enumerator.each { |ele| yield ele }
+    self
+  end
+
+  def enumerator
+    Enumerator.new do |arr|
       current = head
 
       until current.nil?
         arr << current
         current = current.next
       end
-    end
-
-    if block_given?
-      enum.each { |ele| yield ele }
-    else
-      enum
     end
   end
 end
