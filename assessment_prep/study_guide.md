@@ -47,7 +47,7 @@ Blocks create a new local scope specific to them. Local variables instantiated i
 
 Implicit blocks can be called via the `yield` keyword. It works by passing execution to where the closure is defined and execute the code within. Then it will move back to where the execution was before.
 
-`yield` can be passed any number of arguments and will have the return value of the block. You can tell when a block is passed by calling `Kernel#block_given?`. If you use `yield` when no block is passed in, an error will be raised.
+`yield` can be passed any number of arguments and will have the return value of the block. You can tell when a block is passed by calling `Kernel#block_given?`. If you use `yield` when no block is passed in, a `LocalJumpError` error will be raised.
 
 You can define a method that takes an explicit block by prepending a parameter with the `&` symbol. This tells Ruby that you want to convert the block passed to the method into a `Proc` that is referenced by said variable.
 
